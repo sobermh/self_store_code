@@ -101,17 +101,17 @@ async def run_single_task(task_config: Dict[str, str]):
 
 # --- 5. 执行入口 ---
 async def main():
-    name_list = ["刘亦菲","肖战"]
-    ref_image_list = ["lv 灰色.jpeg"]
+    name_list = ["刘亦菲","肖战","赵露思","王嘉尔","杨幂","杨紫","蔡徐坤","迪丽热巴","赵丽颖","权志龙"]
+    ref_image_name_list = [name for name in os.listdir("input") if os.path.isfile(os.path.join("input", name))]
     run_batch_name = datetime.now().strftime("%Y%m%d_%H%M%S")
     tasks_to_run = [
         {
-            "prompt": f"{name}戴着参考图中的围巾", 
+            "prompt": f"{name}戴着参考图中的围巾,人物精美时尚的搭配这个围巾在机场,人物正面朝向镜头,围巾中的图案和字母可以不用太清晰,围巾的尺寸差不多是长185,宽40,图中不要出现尺寸文字,人物远景图,比例1:1", 
             "ref_file": img,
             "batch_subdir":run_batch_name
         }
         for name in name_list
-        for img in ref_image_list
+        for img in ref_image_name_list
     ]
     # 并发启动所有任务
     logger.info(f"🔥 开始并发执行 {len(tasks_to_run)} 个任务...")
