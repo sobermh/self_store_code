@@ -1,0 +1,21 @@
+[project]
+name = "gen-image"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.28.1",
+    "python-dotenv>=1.2.1",
+    "volcengine-python-sdk[ark]",
+]
+
+
+[[tool.uv.index]]
+url = "http://mirrors.aliyun.com/pypi/simple"
+default = true
+
+[[tool.uv.index]]
+name = "nju"
+url = "https://mirrors.nju.edu.cn/pypi/web/simple"
+explicit = true
