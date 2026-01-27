@@ -1,4 +1,5 @@
 import os
+import random
 import httpx
 import base64
 import asyncio
@@ -101,16 +102,16 @@ async def run_single_task(task_config: Dict[str, str]):
 
 # --- 5. 执行入口 ---
 async def main():
-    name_list = ["刘亦菲","肖战","赵露思","王嘉尔","杨幂","杨紫","蔡徐坤","迪丽热巴","赵丽颖","权志龙"]
+    ref_name_list = ["刘亦菲","肖战","赵露思","王嘉尔","杨幂","杨紫","蔡徐坤","迪丽热巴","赵丽颖","权志龙"]
     ref_image_name_list = [name for name in os.listdir("input") if os.path.isfile(os.path.join("input", name))]
     run_batch_name = datetime.now().strftime("%Y%m%d_%H%M%S")
     tasks_to_run = [
         {
-            "prompt": f"{name}戴着参考图中的围巾,人物精美时尚的搭配这个围巾在机场,人物正面朝向镜头,围巾中的图案和字母可以不用太清晰,围巾的尺寸差不多是长185,宽40,图中不要出现尺寸文字,人物远景图,比例1:1", 
+            "prompt": f"{name}戴着参考图中的围巾,人物精美时尚的搭配这个围巾在{random.choice(['机场', '高铁站', '广场', '商场', '咖啡厅','公园','街头','艺术展厅','酒店大堂'])},人物{random.choice(['正面', '侧面', '背面', '四分之三侧面','微微侧身'])}朝向镜头,围巾中的图案和字母可以不用太清晰,围巾的尺寸差不多是长185,宽40,图中不要出现尺寸文字,人物远景图,比例1:1", 
             "ref_file": img,
-            "batch_subdir":run_batch_name
+            "batch_subdir":img.replace('.', '_')
         }
-        for name in name_list
+        for name in ref_name_list
         for img in ref_image_name_list
     ]
     # 并发启动所有任务
