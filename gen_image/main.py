@@ -68,7 +68,7 @@ async def image_generate_api(prompt:str, ref_image: Optional[str] = None) -> Opt
     async with sem:  # 在此处控制并发
         try:
             response = await client.images.generate(
-                model="doubao-seedream-4-5-251128", 
+                model=os.environ.get("ARK_GEN_IMAGE_MODEL"), 
                 prompt=prompt,
                 image=ref_image,
                 sequential_image_generation="disabled",
