@@ -104,6 +104,7 @@ async def run_single_task(task_config: Dict[str, str]):
 async def main():
     ref_name_list = ["刘亦菲","肖战","赵露思","王嘉尔","杨幂","杨紫","蔡徐坤","迪丽热巴","赵丽颖","权志龙"]
     ref_image_name_list = [name for name in os.listdir("input") if os.path.isfile(os.path.join("input", name))]
+    # ref_image_name_list = ["lv nfc 卡其色.png"]
     run_batch_name = datetime.now().strftime("%Y%m%d_%H%M%S")
     tasks_to_run = [
         {
