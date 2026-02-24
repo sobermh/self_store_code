@@ -75,7 +75,7 @@ async def image_generate_api(prompt:str, ref_image: Optional[str] = None) -> Opt
                 response_format="url",
                 size="2K",
                 stream=False,
-                watermark=True
+                watermark=False
             ) 
             return response.data[0].url
         except Exception as e:
